@@ -1,16 +1,15 @@
 import jwt from "jsonwebtoken";
-import bcrypt form "bcrypt";
-
+import bcrypt from "bcrypt";
 
 // when you log in
 export const comparePasswords = (password, hash) => {
-  return bcrypt.compare(password, hash)
-}
+  return bcrypt.compare(password, hash);
+};
 
 // when sign in
-export const hashPassword = (password )=> {
-  return bcrypt.hash(password)
-}
+export const hashPassword = (password) => {
+  return bcrypt.hash(password, 5);
+};
 
 export const createJWT = (user) => {
   const token = jwt.sign(

@@ -1,11 +1,15 @@
-import prisma from "../src/db";
-import { comparePasswords, createJWT, hashPassword } from "../src/modules/auth";
+import prisma from "../src/db.js";
+import {
+  comparePasswords,
+  createJWT,
+  hashPassword,
+} from "../src/modules/auth.js";
 
 export const createNewUser = async (req, res) => {
   const user = await prisma.user.create({
     data: {
       username: req.body.username,
-      emai: req.body.email,
+      email: req.body.email,
       password: await hashPassword(req.body.password),
     },
   });
