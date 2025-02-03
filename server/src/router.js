@@ -2,7 +2,7 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/api", (req, res) => {
+router.get("/products", (req, res) => {
   res.json({ message: "Your user api works" });
 });
 
