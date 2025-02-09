@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./AuthForm.css";
 
 const AuthForm = () => {
+  const [loading, setLoading] = useState(false);
   const [isSignIn, setIsSignIn] = useState("true");
   const [formData, setFormData] = useState({
     email: "",
@@ -49,9 +50,11 @@ const AuthForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("test");
     if (validateForm()) {
       // handle form submission
       console.log("Form validation works");
+      console.log(formData);
     }
   };
 

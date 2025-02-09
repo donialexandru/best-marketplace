@@ -1,0 +1,15 @@
+.header {
+  margin: 0;
+  background-color: #a4c991;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  gap: 1rem;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}

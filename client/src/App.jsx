@@ -1,13 +1,16 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import AuthForm from "./components/AuthForm.jsx";
+import Header from "./components/Header.jsx";
 
 const App = () => {
   return (
-    <div>
-      <h1>Buy something</h1>
-      <AuthForm />
-    </div>
+    <StrictMode>
+      <div>
+        <Header />
+        <AuthForm />
+      </div>
+    </StrictMode>
   );
 };
 
