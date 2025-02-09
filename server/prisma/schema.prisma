@@ -17,11 +17,18 @@ model User {
   id        String   @id @default(uuid())
   email     String   @unique
   password  String
-  username  String   @unique
-  name      String?
+  name      String
   role      Role     @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  describtion String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 enum Role {

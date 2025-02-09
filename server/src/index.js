@@ -4,6 +4,6 @@ dotenv.config();
 
 import app from "./app.js";
 
-app.listen(3001, () => {
-  console.log("hello on http://localhost:3001");
+app.listen(process.env.PORT, () => {
+  console.log(`hello on http://localhost:${process.env.PORT}`);
 });
