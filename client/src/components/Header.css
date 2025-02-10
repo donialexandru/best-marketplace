@@ -1,20 +1,39 @@
 .header {
-  margin: 0;
-  padding: 0;
-  background-color: #a4c991;
   display: flex;
-  flex-flow: row;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-  margin: 0;
+.header-center {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
 }
+
 .search-bar {
   flex-grow: 1;
+  display: flex;
+  flex-grow: row;
+  align-items: center;
   max-width: 500px;
-  border-radius: 5px;
+  border-radius: 28px;
+  padding: 5px 10px;
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+}
+
+.search-bar svg {
+  cursor: pointer;
+}
+
+.search-input {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  outline: none;
 }
 
 ul {
