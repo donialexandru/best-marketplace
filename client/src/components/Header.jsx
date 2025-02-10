@@ -4,17 +4,24 @@ const Header = () => {
   return (
     <header className="header">
       <h1>Best Marketplace</h1>
-      <ul>
-        <li>
-          <a href="#"></a>Cart
-        </li>
-        <li>
-          <a href="#"></a>Favourites
-        </li>
-        <li>
-          <a href="#"></a>User
-        </li>
-      </ul>
+      <input
+        type="search"
+        placeholder="Search for products..."
+        className="search-bar"
+      />
+      <nav>
+        <ul>
+          <li>
+            <a href="#">Cart</a>
+          </li>
+          <li>
+            <a href="#">Favourites</a>
+          </li>
+          <li>
+            <a href="#">User</a>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };

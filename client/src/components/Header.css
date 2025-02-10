@@ -1,9 +1,20 @@
 .header {
   margin: 0;
+  padding: 0;
   background-color: #a4c991;
   display: flex;
+  flex-flow: row;
   justify-content: space-between;
   align-items: center;
+}
+
+h1 {
+  margin: 0;
+}
+.search-bar {
+  flex-grow: 1;
+  max-width: 500px;
+  border-radius: 5px;
 }
 
 ul {
@@ -12,4 +23,8 @@ ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+ul li a {
+  text-decoration: none;
 }
