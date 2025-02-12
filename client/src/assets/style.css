@@ -1,4 +1,23 @@
-body {
+:root {
+  --primary-color: #fd8a50;
+  --secondary-color: #ffeadb;
+  --gray-color: #f4f4f4;
+  --black-color: #1c1c1c;
+  --white-color: #fdfdfd;
+}
+
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+#root {
+  max-width: 1200px; /* Optimal for desktops */
+  margin: 0 auto; /* Centers the div */
+  padding: 20px; /* Adds spacing */
 }

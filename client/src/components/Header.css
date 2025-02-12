@@ -1,10 +1,12 @@
+.logo h1 {
+  color: var(--primary-color);
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #f8f9fa;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header-center {
@@ -23,7 +25,7 @@
   padding: 5px 10px;
   width: 100%;
   max-width: 400px;
-  background-color: #fff;
+  background-color: var(--gray-color);
 }
 
 .search-bar svg {
@@ -36,7 +38,7 @@
   outline: none;
 }
 
-ul {
+.header ul {
   display: flex;
   gap: 1rem;
   list-style-type: none;
@@ -44,6 +46,6 @@ ul {
   margin: 0;
 }
 
-ul li a {
+.header ul li a {
   text-decoration: none;
 }

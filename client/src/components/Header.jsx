@@ -3,8 +3,8 @@ import "./Header.css";
 const Header = () => {
   return (
     <header className="header">
-      <div>
-        <h1>Best Marketplace</h1>
+      <div className="logo">
+        <h1>BEST MARKETPLACE</h1>
       </div>
       <div className="header-center">
         <div className="search-bar">
@@ -33,8 +33,8 @@ const Header = () => {
             <li>
               <a href="#">
                 <svg
-                  width="24"
-                  height="24"
+                  width="40"
+                  height="40"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -52,8 +52,8 @@ const Header = () => {
             <li>
               <a href="#">
                 <svg
-                  width="24"
-                  height="24"
+                  width="40"
+                  height="40"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,8 +71,8 @@ const Header = () => {
             <li>
               <a href="#">
                 <svg
-                  width="24"
-                  height="24"
+                  width="40"
+                  height="40"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
