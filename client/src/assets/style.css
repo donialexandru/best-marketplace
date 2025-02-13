@@ -16,8 +16,44 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+h1 {
+  font-size: 56px;
+  line-height: 120%;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 40px;
+  line-height: 120%;
+  font-weight: 600;
+}
+h3 {
+  font-size: 32px;
+  line-height: 140%;
+  font-weight: 600;
+}
+h4 {
+  font-size: 24px;
+  line-height: 140%;
+  font-weight: 700;
+}
+h5 {
+  font-size: 20px;
+  line-height: 140%;
+  font-weight: 600;
+}
+p {
+  font-size: 16px;
+  line-height: 140%;
+  font-weight: 500;
+}
+.secondary-text {
+  font-size: 14px;
+  line-height: 140%;
+  font-weight: 500;
+}
 #root {
-  max-width: 1200px; /* Optimal for desktops */
+  max-width: 1440px; /* Optimal for desktops */
   margin: 0 auto; /* Centers the div */
   padding: 20px; /* Adds spacing */
 }
