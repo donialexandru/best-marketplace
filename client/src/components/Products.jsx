@@ -49,8 +49,8 @@ const Products = () => {
             />
           </svg>
         </div>
-        <h5>Author: {}</h5>
         <p>Title: {}</p>
+        <p className="secondary-text">Author: {}</p>
         <p>{price}</p>
       </div>
     </div>

@@ -48,3 +48,6 @@
 .heart-icon:hover {
   fill: red;
 }
+.cart-icon:hover {
+  fill: var(--primary-color);
+}
