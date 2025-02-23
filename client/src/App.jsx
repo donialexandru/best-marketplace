@@ -1,16 +1,17 @@
-import React, { StrictMode } from "react";
+import React, { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Header from "./components/Header.jsx";
 import Products from "./components/Products.jsx";
-import Cart from "./components/Cart.jsx";
-import Profile from "./components/Profile.jsx";
-import Favourites from "./components/Favourites.jsx";
+import { CartContext } from "./contexts.jsx";
 
 const App = () => {
+  const cartHook = useState([]);
   return (
     <StrictMode>
-      <Header />
-      <Products />
+      <CartContext.Provider value={cartHook}>
+        <Header />
+        <Products />
+      </CartContext.Provider>
     </StrictMode>
   );
 };
