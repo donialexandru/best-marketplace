@@ -1,6 +1,10 @@
 import "./Header.css";
+import { useContext } from "react";
+import { CartContext } from "../contexts";
 
 const Header = () => {
+  const [cart] = useContext(CartContext);
+
   return (
     <header className="header">
       <a href="/" className="logo">
@@ -31,7 +35,7 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <a href="#">
+              <a href="#" className="cart-link">
                 <svg
                   width="40"
                   height="40"
@@ -47,6 +51,7 @@ const Header = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
+                <span className="cart-number">{cart.length}</span>
               </a>
             </li>
             <li>
