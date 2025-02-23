@@ -31,7 +31,7 @@
   object-fit: cover;
   border-radius: 2px;
 }
-.heart-icon {
+.heart-icon > svg {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -41,7 +41,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
-.cart-icon {
+.cart-icon > svg {
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -52,9 +52,9 @@
   cursor: pointer;
 }
 
-.heart-icon:hover {
+.heart-icon > svg:hover {
   fill: red;
 }
-.cart-icon:hover {
+.cart-icon > svg:hover {
   fill: var(--primary-color);
 }
