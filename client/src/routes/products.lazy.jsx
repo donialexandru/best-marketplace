@@ -1,14 +1,16 @@
-import "./Products.css";
-import Loading from "./Loading.jsx";
-import { useEffect, useState, useContext } from "react";
-import Cart from "./Cart.jsx";
-import Product from "./Product.jsx";
-import { CartContext } from "../contexts.jsx";
+import "../components/Products.css";
+import Loading from "../components/Loading.jsx";
+import { useEffect, useState } from "react";
+import { createLazyFileRoute } from "@tanstack/react-router";
+import Product from "../components/Product.jsx";
 
-const Products = () => {
+export const Route = createLazyFileRoute("/products")({
+  component: Products,
+});
+
+function Products() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [cart] = useContext(CartContext);
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -33,9 +35,6 @@ const Products = () => {
           author={book.author}
         />
       ))}
-      <Cart cart={cart} />
     </div>
   );
-};
-
-export default Products;
+}

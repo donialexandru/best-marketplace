@@ -1,15 +1,16 @@
 import "./Header.css";
 import { useContext } from "react";
 import { CartContext } from "../contexts";
+import { Link } from "@tanstack/react-router";
 
 const Header = () => {
   const [cart] = useContext(CartContext);
 
   return (
     <header className="header">
-      <a href="/" className="logo">
+      <Link className="logo" to="/">
         <h4>BEST MARKETPLACE</h4>
-      </a>
+      </Link>
       <div className="header-center">
         <div className="search-bar">
           <svg
@@ -35,7 +36,7 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <a href="#" className="cart-link">
+              <Link className="cart-link" to="/cart">
                 <svg
                   width="40"
                   height="40"
@@ -51,8 +52,9 @@ const Header = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
+
                 <span className="cart-number">{cart.length}</span>
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#">
