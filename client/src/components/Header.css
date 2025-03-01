@@ -10,6 +10,15 @@
   padding: 10px 20px;
 }
 
+.sub-header {
+  display: flex;
+  flex-flow: row;
+  padding: 1rem;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
 .header-center {
   flex-grow: 1;
   display: flex;

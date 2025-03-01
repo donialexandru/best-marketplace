@@ -57,3 +57,13 @@ p {
   margin: 0 auto; /* Centers the div */
   padding: 20px; /* Adds spacing */
 }
+.router-link {
+  text-decoration: none;
+}
+.router-link:visited {
+  color: initial;
+}
+.router-link:hover,
+.router-link:active {
+  color: var(--primary-color);
+}
