@@ -3,6 +3,7 @@ import Loading from "../components/Loading.jsx";
 import { useEffect, useState } from "react";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import Product from "../components/Product.jsx";
+import Pagination from "../components/Pagination.jsx";
 
 export const Route = createLazyFileRoute("/products")({
   component: Products,
@@ -22,19 +23,5 @@ function Products() {
     setLoading(false);
   }
 
-  return loading ? (
-    <Loading />
-  ) : (
-    <div className="products">
-      {books.map((book) => (
-        <Product
-          key={book.id}
-          imageUrl={book.imageUrl}
-          title={book.title}
-          price={book.price}
-          author={book.author}
-        />
-      ))}
-    </div>
-  );
+  return loading ? <Loading /> : <Pagination data={books} itemsPerPage={5} />;
 }
