@@ -1,5 +1,5 @@
-const Favourites = () => {
-  return <h2>Welcome to the Favourites section</h2>;
-};
+function Favourites() {
+  return <p>This is the Favourites component</p>;
+}
 
 export default Favourites;

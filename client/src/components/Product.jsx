@@ -1,5 +1,5 @@
-import FavouriteLogo from "./FavouriteLogo";
-import CartLogo from "./CartLogo";
+import FavouriteLogo from "./common/FavouriteLogo.jsx";
+import CartLogo from "./common/CartLogo.jsx";
 import { useContext, useState } from "react";
 import { formatCurrency } from "../utils/currency";
 import { CartContext } from "../contexts";

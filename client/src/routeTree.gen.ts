@@ -8,37 +8,46 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-
-// Create Virtual Routes
-
-const ProductsLazyImport = createFileRoute('/products')()
-const CartLazyImport = createFileRoute('/cart')()
-const IndexLazyImport = createFileRoute('/')()
+import { Route as ProfileImport } from './routes/profile'
+import { Route as ProductsImport } from './routes/products'
+import { Route as FavouritesImport } from './routes/favourites'
+import { Route as CartImport } from './routes/cart'
+import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
-const ProductsLazyRoute = ProductsLazyImport.update({
+const ProfileRoute = ProfileImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProductsRoute = ProductsImport.update({
   id: '/products',
   path: '/products',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/products.lazy').then((d) => d.Route))
+} as any)
 
-const CartLazyRoute = CartLazyImport.update({
+const FavouritesRoute = FavouritesImport.update({
+  id: '/favourites',
+  path: '/favourites',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CartRoute = CartImport.update({
   id: '/cart',
   path: '/cart',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/cart.lazy').then((d) => d.Route))
+} as any)
 
-const IndexLazyRoute = IndexLazyImport.update({
+const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -48,21 +57,35 @@ declare module '@tanstack/react-router' {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
+      preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
     '/cart': {
       id: '/cart'
       path: '/cart'
       fullPath: '/cart'
-      preLoaderRoute: typeof CartLazyImport
+      preLoaderRoute: typeof CartImport
+      parentRoute: typeof rootRoute
+    }
+    '/favourites': {
+      id: '/favourites'
+      path: '/favourites'
+      fullPath: '/favourites'
+      preLoaderRoute: typeof FavouritesImport
       parentRoute: typeof rootRoute
     }
     '/products': {
       id: '/products'
       path: '/products'
       fullPath: '/products'
-      preLoaderRoute: typeof ProductsLazyImport
+      preLoaderRoute: typeof ProductsImport
+      parentRoute: typeof rootRoute
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileImport
       parentRoute: typeof rootRoute
     }
   }
@@ -71,43 +94,53 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexLazyRoute
-  '/cart': typeof CartLazyRoute
-  '/products': typeof ProductsLazyRoute
+  '/': typeof IndexRoute
+  '/cart': typeof CartRoute
+  '/favourites': typeof FavouritesRoute
+  '/products': typeof ProductsRoute
+  '/profile': typeof ProfileRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexLazyRoute
-  '/cart': typeof CartLazyRoute
-  '/products': typeof ProductsLazyRoute
+  '/': typeof IndexRoute
+  '/cart': typeof CartRoute
+  '/favourites': typeof FavouritesRoute
+  '/products': typeof ProductsRoute
+  '/profile': typeof ProfileRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexLazyRoute
-  '/cart': typeof CartLazyRoute
-  '/products': typeof ProductsLazyRoute
+  '/': typeof IndexRoute
+  '/cart': typeof CartRoute
+  '/favourites': typeof FavouritesRoute
+  '/products': typeof ProductsRoute
+  '/profile': typeof ProfileRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cart' | '/products'
+  fullPaths: '/' | '/cart' | '/favourites' | '/products' | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cart' | '/products'
-  id: '__root__' | '/' | '/cart' | '/products'
+  to: '/' | '/cart' | '/favourites' | '/products' | '/profile'
+  id: '__root__' | '/' | '/cart' | '/favourites' | '/products' | '/profile'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexLazyRoute: typeof IndexLazyRoute
-  CartLazyRoute: typeof CartLazyRoute
-  ProductsLazyRoute: typeof ProductsLazyRoute
+  IndexRoute: typeof IndexRoute
+  CartRoute: typeof CartRoute
+  FavouritesRoute: typeof FavouritesRoute
+  ProductsRoute: typeof ProductsRoute
+  ProfileRoute: typeof ProfileRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexLazyRoute: IndexLazyRoute,
-  CartLazyRoute: CartLazyRoute,
-  ProductsLazyRoute: ProductsLazyRoute,
+  IndexRoute: IndexRoute,
+  CartRoute: CartRoute,
+  FavouritesRoute: FavouritesRoute,
+  ProductsRoute: ProductsRoute,
+  ProfileRoute: ProfileRoute,
 }
 
 export const routeTree = rootRoute
@@ -122,17 +155,25 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/cart",
-        "/products"
+        "/favourites",
+        "/products",
+        "/profile"
       ]
     },
     "/": {
-      "filePath": "index.lazy.jsx"
+      "filePath": "index.jsx"
     },
     "/cart": {
-      "filePath": "cart.lazy.jsx"
+      "filePath": "cart.jsx"
+    },
+    "/favourites": {
+      "filePath": "favourites.jsx"
     },
     "/products": {
-      "filePath": "products.lazy.jsx"
+      "filePath": "products.jsx"
+    },
+    "/profile": {
+      "filePath": "profile.jsx"
     }
   }
 }

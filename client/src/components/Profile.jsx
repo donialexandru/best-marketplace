@@ -1,5 +1,5 @@
-const Profile = () => {
-  return <h2>Welcome to the Profile section</h2>;
-};
+function Profile() {
+  return <p>This is the Profile component</p>;
+}
 
 export default Profile;

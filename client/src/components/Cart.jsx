@@ -1,11 +1,6 @@
 import { useContext, useState } from "react";
 import { formatCurrency } from "../utils/currency";
 import { CartContext } from "../contexts";
-import { createLazyFileRoute } from "@tanstack/react-router";
-
-export const Route = createLazyFileRoute("/cart")({
-  component: Cart,
-});
 
 function Cart() {
   const [loading, setLoading] = useState(true);
@@ -33,7 +28,7 @@ function Cart() {
   }
   return (
     <div className="cart">
-      <h2>Cart</h2>
+      <p>Cart</p>
       <ul>
         {cart.map((item, index) => (
           <li key={index}>
@@ -46,3 +41,5 @@ function Cart() {
     </div>
   );
 }
+
+export default Cart;

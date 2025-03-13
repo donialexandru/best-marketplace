@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
-import Header from "../components/Header";
+import Header from "../components/header/Header.jsx";
 import { CartContext } from "../contexts";
-
-export const Route = createRootRoute({
-  component: RootComponent,
-});
 
 function RootComponent() {
   const cartHook = useState([]);
@@ -20,3 +16,7 @@ function RootComponent() {
     </>
   );
 }
+
+export const Route = createRootRoute({
+  component: RootComponent,
+});
