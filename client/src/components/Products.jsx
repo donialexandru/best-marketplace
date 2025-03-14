@@ -1,6 +1,6 @@
 import Loading from "./common/Loading.jsx";
 import Pagination from "./Pagination.jsx";
-import { useProducts } from "./useProducts.jsx";
+import { useProducts } from "../hooks/useProducts.jsx";
 
 function Products() {
   const { books, loading, error } = useProducts();

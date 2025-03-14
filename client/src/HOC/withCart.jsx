@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../contexts";
-import { useCart } from "../components/useCart";
+import { useCart } from "../hooks/useCart";
 
 export const withCart = (WrappedComponent) => {
   return function WithCartComponent(props) {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Product from "./Product.jsx";
-import { usePagination } from "./usePagination.jsx";
+import { usePagination } from "../hooks/usePagination.jsx";
 
 function Pagination({ data, itemsPerPage }) {
   const {

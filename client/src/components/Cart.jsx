@@ -1,5 +1,5 @@
 import { formatCurrency } from "../utils/currency";
-import { useCart } from "./useCart";
+import { useCart } from "../hooks/useCart";
 
 function Cart() {
   const { cart, total } = useCart();
