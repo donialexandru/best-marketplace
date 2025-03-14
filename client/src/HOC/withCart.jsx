@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { CartContext } from "../contexts";
+import { useCart } from "../components/useCart";
 
 export const withCart = (WrappedComponent) => {
   return function WithCartComponent(props) {
-    const [cart, setCart] = useContext(CartContext);
+    const { cart, setCart } = useCart();
 
     const addToCart = (product) => {
       setCart([...cart, { name: product.title, price: product.price }]);
