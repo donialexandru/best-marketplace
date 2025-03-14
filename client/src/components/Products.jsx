@@ -1,22 +1,14 @@
 import Loading from "./common/Loading.jsx";
-import { useEffect, useState } from "react";
 import Pagination from "./Pagination.jsx";
+import { useProducts } from "./useProducts.jsx";
 
 function Products() {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    fetchBooks();
-  }, []);
+  const { books, loading, error } = useProducts();
 
-  async function fetchBooks() {
-    const booksRes = await fetch("/api/products/books");
-    const booksJson = await booksRes.json();
-    setBooks(booksJson.data);
-    setLoading(false);
-  }
+  if (loading) return <Loading />;
+  if (error) return <Error message={error} />;
 
-  return loading ? <Loading /> : <Pagination data={books} itemsPerPage={5} />;
+  return <Pagination data={books} itemsPerPage={5} />;
 }
 
 export default Products;

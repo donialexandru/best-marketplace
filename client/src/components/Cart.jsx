@@ -1,31 +1,9 @@
-import { useContext, useState } from "react";
 import { formatCurrency } from "../utils/currency";
-import { CartContext } from "../contexts";
+import { useCart } from "./useCart";
 
 function Cart() {
-  const [loading, setLoading] = useState(true);
-  const [cart] = useContext(CartContext);
+  const { cart, total } = useCart();
 
-  async function checkout() {
-    setLoading(true);
-
-    await fetch("/api/order", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({ cart }),
-    });
-
-    setCart([]);
-    setLoading(false);
-  }
-
-  let total = 0;
-  for (let i = 0; i < cart.length; i++) {
-    const current = cart[i];
-    total += Number(current.price);
-  }
   return (
     <div className="cart">
       <p>Cart</p>
@@ -37,7 +15,6 @@ function Cart() {
         ))}
       </ul>
       <p>Total: {formatCurrency(total)}</p>
-      <button onClick={checkout}>Checkout</button>
     </div>
   );
 }
