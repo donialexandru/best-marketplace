@@ -1,16 +1,15 @@
 import FavouriteLogo from "./common/FavouriteLogo.jsx";
 import CartLogo from "./common/CartLogo.jsx";
-import { useContext, useState } from "react";
 import { formatCurrency } from "../utils/currency";
-import { CartContext } from "../contexts";
+import { withCart } from "../HOC/withCart.jsx";
 
-export default function Product(props) {
-  const [cart, setCart] = useContext(CartContext);
+function Product(props) {
+  const { imageUrl, title, author, price, addToCart } = props;
 
   return (
     <div className="product">
       <div className="image">
-        <img src={props.imageUrl} alt="random image" />
+        <img src={imageUrl} alt="random image" />
         <a href="#" className="heart-icon">
           <FavouriteLogo />
         </a>
@@ -18,15 +17,17 @@ export default function Product(props) {
           className="cart-icon"
           onClick={(e) => {
             e.preventDefault();
-            setCart([...cart, { name: props.title, price: props.price }]);
+            addToCart({ title, price });
           }}
         >
           <CartLogo />
         </a>
       </div>
-      <p>Title: {props.title}</p>
-      <p className="secondary-text">Author: {props.author}</p>
-      <p>{formatCurrency(props.price)}</p>
+      <p>Title: {title}</p>
+      <p className="secondary-text">Author: {author}</p>
+      <p>{formatCurrency(price)}</p>
     </div>
   );
 }
+
+export default withCart(Product);
