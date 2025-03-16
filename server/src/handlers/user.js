@@ -1,4 +1,4 @@
-import prisma from "../db.js";
+import prisma from "../modules/db.js";
 import { comparePasswords, createJWT, hashPassword } from "../modules/auth.js";
 
 export const register = async (req, res) => {
