@@ -15,6 +15,7 @@ import { Route as ProfileImport } from './routes/profile'
 import { Route as ProductsImport } from './routes/products'
 import { Route as FavouritesImport } from './routes/favourites'
 import { Route as CartImport } from './routes/cart'
+import { Route as AuthImport } from './routes/auth'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -43,6 +44,12 @@ const CartRoute = CartImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthRoute = AuthImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
@@ -58,6 +65,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
     }
     '/cart': {
@@ -95,6 +109,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/favourites': typeof FavouritesRoute
   '/products': typeof ProductsRoute
@@ -103,6 +118,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/favourites': typeof FavouritesRoute
   '/products': typeof ProductsRoute
@@ -112,6 +128,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/favourites': typeof FavouritesRoute
   '/products': typeof ProductsRoute
@@ -120,15 +137,23 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cart' | '/favourites' | '/products' | '/profile'
+  fullPaths: '/' | '/auth' | '/cart' | '/favourites' | '/products' | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cart' | '/favourites' | '/products' | '/profile'
-  id: '__root__' | '/' | '/cart' | '/favourites' | '/products' | '/profile'
+  to: '/' | '/auth' | '/cart' | '/favourites' | '/products' | '/profile'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/cart'
+    | '/favourites'
+    | '/products'
+    | '/profile'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
   FavouritesRoute: typeof FavouritesRoute
   ProductsRoute: typeof ProductsRoute
@@ -137,6 +162,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
   CartRoute: CartRoute,
   FavouritesRoute: FavouritesRoute,
   ProductsRoute: ProductsRoute,
@@ -154,6 +180,7 @@ export const routeTree = rootRoute
       "filePath": "__root.jsx",
       "children": [
         "/",
+        "/auth",
         "/cart",
         "/favourites",
         "/products",
@@ -162,6 +189,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.jsx"
+    },
+    "/auth": {
+      "filePath": "auth.jsx"
     },
     "/cart": {
       "filePath": "cart.jsx"
