@@ -1,13 +1,11 @@
 import prisma from "../modules/db.js";
 
-export const getBooks = async (req, res) => {
+export const getBooks = async (req, res, next) => {
   try {
     const books = await prisma.book.findMany();
     res.status(200);
     res.json({ succes: true, data: books });
-  } catch (error) {
-    console.error("Error retrieving books", error);
-    res.status(500);
-    res.json({ message: "Failed to retrieve books" });
+  } catch (e) {
+    next(e);
   }
 };

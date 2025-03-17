@@ -1,31 +1,41 @@
 import prisma from "../modules/db.js";
 import { comparePasswords, createJWT, hashPassword } from "../modules/auth.js";
 
-export const register = async (req, res) => {
-  const user = await prisma.user.create({
-    data: {
-      name: req.body.name,
-      email: req.body.email,
-      password: await hashPassword(req.body.password),
-    },
-  });
-  const token = createJWT(user);
-  res.json({ token });
+export const registerUser = async (req, res, next) => {
+  try {
+    const user = await prisma.user.create({
+      data: {
+        name: req.body.name,
+        email: req.body.email,
+        password: await hashPassword(req.body.password),
+      },
+    });
+    const token = createJWT(user);
+    res.json({ token });
+  } catch (e) {
+    e.type = "input";
+    next(e);
+  }
 };
 
-export const signin = async (req, res) => {
-  const user = await prisma.user.findUnique({
-    where: {
-      email: req.body.email,
-    },
-  });
-  const isValid = await comparePasswords(req.body.password, user.password);
+export const signinUser = async (req, res, next) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: req.body.email,
+      },
+    });
+    const isValid = await comparePasswords(req.body.password, user.password);
 
-  if (!isValid) {
-    res.status(401);
-    res.json({ message: "Your password didn't match" });
-    return;
+    if (!isValid) {
+      res.status(401);
+      res.json({ message: "Your password didn't match" });
+      return;
+    }
+    const token = createJWT(user);
+    res.json({ token, message: "Loged In" });
+  } catch (e) {
+    e.type = "input";
+    next(e);
   }
-  const token = createJWT(user);
-  res.json({ token, message: "Loged In" });
 };
