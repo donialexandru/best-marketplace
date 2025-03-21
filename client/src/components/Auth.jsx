@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InputField from "./InputField";
+import InputField from "./common/InputField";
 
 function Auth() {
   const [formData, setFormData] = useState({
