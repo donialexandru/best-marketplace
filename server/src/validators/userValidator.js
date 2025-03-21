@@ -17,7 +17,7 @@ export const registerUserValidation = () => {
   ];
 };
 
-export const signinUserValidation = () => {
+export const loginUserValidation = () => {
   return [
     body("email")
       .notEmpty()

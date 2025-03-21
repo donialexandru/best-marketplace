@@ -1,116 +1,91 @@
 import { useState } from "react";
+import InputField from "./InputField";
 
 function Auth() {
-  const [mode, setMode] = useState("login");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const toogleMenu = () => {
-    setMode(mode === "login" ? "register" : "login");
-    setUsername("");
-    setPassword("");
-    setConfirmPassword("");
-    setError("");
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError("");
     setLoading(true);
-    if (mode === "register" && password !== confirmPassword) {
-      setError("Passwords do not match.");
-      setLoading(false);
-      return;
-    }
 
-    const endpoint = mode === "login" ? "api/login" : "api/register";
+    console.log(formData.name, formData.email, formData.password);
+    const endpoint = "/api/register";
 
     try {
       const response = await fetch(endpoint, {
-        method: "POST",
+        method: "post",
         headers: {
-          "Content-Type": "application/json",
+          "content-type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(formData),
       });
       if (!response.ok) {
-        throw new Error(
-          "Authentication failed. Please check yout current credentials.",
+        throw new error(
+          "authentication failed. please check yout current credentials.",
         );
       }
 
       const data = await response.json();
-      console.log(
-        `${mode === "login" ? "Login" : "Registration"} successful: `,
-        data,
-      );
+      console.log(data);
+
+      if (response.ok) {
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+        });
+      }
     } catch (err) {
       console.log(err);
       setError(err.message);
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   return (
-    <div className="auth-container">
-      <h2>{mode === "login" ? "Login" : "Register"}</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        {mode === "register" && (
-          <div>
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </div>
-        )}
-        {error && <div>{error}</div>}
-        <button type="submit" disabled={loading}>
-          {loading
-            ? mode === "login"
-              ? "Signing In..."
-              : "Registering"
-            : mode === "login"
-              ? "Login"
-              : "Register"}
-        </button>
-      </form>
-      <p>
-        {mode === "login"
-          ? "Don't have an account?"
-          : "Already have an account?"}{" "}
-        <button onClick={toogleMenu}>
-          {mode === "login" ? "Register here:" : "Login here"}
-        </button>
-      </p>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <InputField
+        label="name"
+        type="text"
+        id="name"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+      />
+      <InputField
+        label="email"
+        type="email"
+        id="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+      />
+      <InputField
+        label="password"
+        type="password"
+        id="password"
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+      />
+      <button type="submit">Register</button>
+    </form>
   );
 }
 

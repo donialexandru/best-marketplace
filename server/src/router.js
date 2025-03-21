@@ -1,16 +1,16 @@
 import { Router } from "express";
-import { registerUser, signinUser } from "./handlers/user.js";
+import { loginUser, registerUser } from "./handlers/user.js";
 import { getBooks } from "./handlers/getBooks.js";
 import {
+  loginUserValidation,
   registerUserValidation,
-  signinUserValidation,
 } from "./validators/userValidator.js";
 import { validate } from "./validators/validate.js";
 
 const router = Router();
 
 router.post("/register", registerUserValidation(), validate, registerUser);
-router.post("/signin", signinUserValidation(), validate, signinUser);
+router.post("/login", loginUserValidation(), validate, loginUser);
 
 router.get("/products/books", getBooks);
 

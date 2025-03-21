@@ -4,8 +4,8 @@ function SubHeaderLinks({ links }) {
   return (
     <ul className="sub-header">
       {links.map((link, index) => (
-        <li>
-          <Link key={index} className="router-link" to={link.path}>
+        <li key={index}>
+          <Link className="router-link" to={link.path}>
             <p className="secondary-text">{link.label}</p>
           </Link>
         </li>
