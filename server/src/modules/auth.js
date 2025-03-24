@@ -15,38 +15,33 @@ export const createJWT = (user) => {
   const token = jwt.sign(
     {
       id: user.id,
-      name: user.name,
       role: user.role,
     },
     process.env.JWT_SECRET,
+    { expiresIn: "1h" },
   );
   return token;
 };
 
 export const protect = (req, res, next) => {
-  const bearer = req.headers.authorization;
-
-  if (!bearer) {
-    res.status(401);
-    res.send("Not authorized");
-    return;
-  }
-  const [, token] = bearer.split(" ");
+  // const bearer = req.headers.authorization;
+  const token = req.cookies?.token;
 
   if (!token) {
     res.status(401);
-    res.send("Not valid token");
+    res.json({ message: "Authentication required" });
     return;
   }
 
   try {
-    const user = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = user;
-    next();
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(403).json({ message: "Invalid or expired token" });
+      }
+      req.user = decoded;
+      next();
+    });
   } catch (e) {
-    console.error(e);
-    res.status(401);
-    res.send("Not valid token");
-    return;
+    next(e);
   }
 };
