@@ -20,8 +20,6 @@ function Auth() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setError("");
-    setLoading(true);
 
     console.log(formData.name, formData.email, formData.password);
     const endpoint = "/api/register";

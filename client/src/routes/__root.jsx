@@ -1,17 +1,15 @@
-import { useState } from "react";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import Header from "../components/header/Header.jsx";
-import { CartContext } from "../contexts";
+import { CartProvider } from "../context/CartContext.jsx";
 
 function RootComponent() {
-  const cartHook = useState([]);
   return (
     <>
-      <CartContext.Provider value={cartHook}>
+      <CartProvider>
         <Header />
         <Outlet />
-      </CartContext.Provider>
+      </CartProvider>
       <TanStackRouterDevtools />
     </>
   );

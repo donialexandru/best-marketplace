@@ -14,7 +14,7 @@ router.post("/register", registerUserValidation(), validate, registerUser);
 router.post("/login", loginUserValidation(), validate, loginUser);
 router.post("/logout", logoutUser);
 
-router.get("/products/books", protect, getBooks);
+router.get("/products/books", getBooks);
 
 router.use((err, req, res, next) => {
   if (err.type === "auth") {

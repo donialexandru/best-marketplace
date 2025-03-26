@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { CartContext } from "../../contexts.jsx";
 import CartLogo from "../common/CartLogo.jsx";
 import FavouriteLogo from "../common/FavouriteLogo.jsx";
 import UserLogo from "../common/UserLogo.jsx";
@@ -7,9 +5,10 @@ import SubHeaderLinks from "./SubHeaderLinks.jsx";
 import HeaderLinks from "./HeaderLinks.jsx";
 import Search from "./Search.jsx";
 import Logo from "./Logo.jsx";
+import { useCart } from "../../context/CartContext.jsx";
 
 const Header = () => {
-  const [cart] = useContext(CartContext);
+  const { cart } = useCart();
 
   const subHeaderLinksData = [
     { label: "All products", path: "/products" },
