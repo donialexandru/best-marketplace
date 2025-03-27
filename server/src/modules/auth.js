@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-
+import prisma from "./db.js";
 // when you log in
 export const comparePasswords = (password, hash) => {
   return bcrypt.compare(password, hash);
@@ -44,4 +44,31 @@ export const protect = (req, res, next) => {
   } catch (e) {
     next(e);
   }
+};
+
+export const findUserById = async (userId) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  return user;
+};
+
+export const authenticateToken = (req, res, next) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.status(401).json({ message: "Authentication required" });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(400).json({ message: "Invalid or expired toke" });
+    }
+    req.user = decoded;
+
+    next();
+  });
 };

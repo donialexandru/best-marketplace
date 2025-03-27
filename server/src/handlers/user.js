@@ -1,5 +1,10 @@
 import prisma from "../modules/db.js";
-import { comparePasswords, createJWT, hashPassword } from "../modules/auth.js";
+import {
+  comparePasswords,
+  createJWT,
+  findUserById,
+  hashPassword,
+} from "../modules/auth.js";
 
 export const registerUser = async (req, res, next) => {
   try {
@@ -61,5 +66,26 @@ export const logoutUser = async (req, res, next) => {
     res.json({ message: "Logged out successfully" });
   } catch (e) {
     next(e);
+  }
+};
+
+export const checkUser = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+
+    const user = await findUserById(userId);
+
+    console.log(user);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    });
+  } catch (err) {
+    next(err);
   }
 };

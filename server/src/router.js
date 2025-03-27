@@ -1,18 +1,25 @@
 import { Router } from "express";
-import { loginUser, logoutUser, registerUser } from "./handlers/user.js";
+import {
+  checkUser,
+  loginUser,
+  logoutUser,
+  registerUser,
+} from "./handlers/user.js";
 import { getBooks } from "./handlers/getBooks.js";
 import {
   loginUserValidation,
   registerUserValidation,
 } from "./validators/userValidator.js";
 import { validate } from "./validators/validate.js";
-import { protect } from "./modules/auth.js";
+import { authenticateToken, protect } from "./modules/auth.js";
 
 const router = Router();
 
 router.post("/register", registerUserValidation(), validate, registerUser);
 router.post("/login", loginUserValidation(), validate, loginUser);
 router.post("/logout", logoutUser);
+
+router.get("/me", authenticateToken, checkUser);
 
 router.get("/products/books", getBooks);
 
