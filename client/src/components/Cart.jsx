@@ -1,8 +1,9 @@
 import { formatCurrency } from "../utils/currency";
-import { useCart } from "../context/CartContext.jsx";
+import { getCartTotal, useCart } from "../context/CartContext.jsx";
 
 function Cart() {
-  const { cart, total } = useCart();
+  const { cart } = useCart();
+  const cartTotal = getCartTotal(cart);
 
   return (
     <div className="cart">
@@ -14,7 +15,7 @@ function Cart() {
           </li>
         ))}
       </ul>
-      <p>Total: {formatCurrency(total)}</p>
+      <p>Total: {formatCurrency(cartTotal)}</p>
     </div>
   );
 }

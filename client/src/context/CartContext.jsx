@@ -13,10 +13,9 @@ export const CartProvider = ({ children }) => {
 export const useCart = () => {
   const [cart, setCart] = useContext(CartContext);
 
-  let total = 0;
-  for (let i = 0; i < cart.length; i++) {
-    const current = cart[i];
-    total += Number(current.price);
-  }
-  return { cart, total, setCart };
+  return { cart, setCart };
+};
+
+export const getCartTotal = (cart) => {
+  return cart.reduce((sum, item) => (sum * 100 + item.price * 100) / 100, 0);
 };
