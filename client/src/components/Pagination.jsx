@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Product from "./Product.jsx";
 import { usePagination } from "../hooks/usePagination.jsx";
 

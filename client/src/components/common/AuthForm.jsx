@@ -1,4 +1,3 @@
-import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import InputField from "./InputField";
@@ -11,9 +10,7 @@ function AuthForm() {
     password: "",
     confirmPassword: "",
   });
-  const [errors, setErrors] = useState({});
 
-  const navigate = useNavigate();
   const { login, register, loading } = useAuth();
 
   const handleChange = (e) => {
@@ -46,7 +43,6 @@ function AuthForm() {
 
   const toggleAuthMode = () => {
     setIsLogin(!isLogin);
-    setErrors({});
   };
 
   return (

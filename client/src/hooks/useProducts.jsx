@@ -6,28 +6,6 @@ export function useProducts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchBooks();
-  }, []);
-
-  // async function fetchBooks() {
-  //   try {
-  //     setLoading(true);
-  //     setError(null);
-  //     const response = await fetch("/api/products/books");
-  //
-  //     if (!response.ok) {
-  //       throw new Error("Failed to fetch products");
-  //     }
-  //     const data = await response.json();
-  //     setBooks(data.data);
-  //   } catch (err) {
-  //     setError(err.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
-
   async function fetchBooks() {
     try {
       setLoading(true);
@@ -40,5 +18,9 @@ export function useProducts() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
   return { books, loading, error };
 }
