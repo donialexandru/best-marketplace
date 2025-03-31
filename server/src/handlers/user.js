@@ -24,7 +24,10 @@ export const registerUser = async (req, res, next) => {
       maxAge: 3600000,
     });
 
-    res.json({ success: true, user: { id: user.id, email: user.email } });
+    res.json({
+      success: true,
+      user: { id: user.id, name: user.name, email: user.email },
+    });
   } catch (e) {
     e.type = "input";
     next(e);
@@ -53,7 +56,10 @@ export const loginUser = async (req, res, next) => {
       sameSite: "strict",
       maxAge: 3600000,
     });
-    res.json({ success: true, user: { id: user.id, email: user.email } });
+    res.json({
+      success: true,
+      user: { id: user.id, name: user.name, email: user.email },
+    });
   } catch (e) {
     e.type = "input";
     next(e);
@@ -72,18 +78,14 @@ export const logoutUser = async (req, res, next) => {
 export const checkUser = async (req, res, next) => {
   try {
     const userId = req.user.id;
-
     const user = await findUserById(userId);
-
-    console.log(user);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
     res.json({
-      id: user.id,
-      name: user.name,
-      email: user.email,
+      success: true,
+      user: { id: user.id, name: user.name, email: user.email },
     });
   } catch (err) {
     next(err);

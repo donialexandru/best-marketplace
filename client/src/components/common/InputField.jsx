@@ -1,6 +1,6 @@
 function InputField({ label, type, id, name, value, onChange }) {
   return (
-    <div>
+    <div className="form-group">
       <label htmlFor={id}>{label}:</label>
       <input
         type={type}

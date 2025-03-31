@@ -24,7 +24,7 @@ const Header = () => {
       className: "cart-link",
     },
     { path: "/favourites", icon: <FavouriteLogo /> },
-    { path: "/auth", icon: <UserLogo /> },
+    { path: "/user", icon: <UserLogo /> },
   ];
 
   return (
